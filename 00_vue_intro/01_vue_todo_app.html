@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- 도움되는 콘솔 경고를 포함한 개발 버전 -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <title>Document</title>
+  <style>
+    .completed {
+      text-decoration: line-through;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1 v-bind:style="{ color: activeColor, fontSize: fontSize + 'px'}">Todo App</h1>
+    <input id="input" v-model="newTodo" type="text" v-on:keydown.enter='addTodo'>
+    <button @click="addTodo">추가하기</button>
+    <ul>
+      <!-- <li v-for="todo in todos" v-if="!todo.completed" v-on:click="toggoleTodo(todo)"> -->
+      <li v-for="todo in todos" v-bind:class="{ completed: todo.completed }">
+        <input type="checkbox" v-model='todo.completed'>
+        {{ todo.content }}
+      </li>
+      <!-- <li v-else @click="toggoleTodo(todo)">{{ todo.content }}[완료!]</li> -->
+    </ul>
+
+    <footer>
+      <button @click="clearCopmpleted">Clear completed todos</button>
+
+    </footer>
+  </div>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        todos: [
+          {
+            content: '저녁 메뉴 고민하기',
+            completed: true,
+          },
+          {
+            content: '사다리 타기',
+            completed: false,
+          },
+          {
+            content: '약속의 2시 낮잠 자기',
+            completed: false,
+          },
+          {
+            content: '야자하기',
+            completed: false,
+          },
+        ],
+        newTodo: '',
+        activeColor: 'red',
+        fontSize: 50,
+      },
+      methods: {
+        toggoleTodo: function(todo) {
+          todo.completed = !todo.completed
+        },
+        addTodo: function() {
+          this.todos.push({
+            content: this.newTodo,
+            completed: false,
+          })
+          this.newTodo = ''
+        },
+        clearCopmpleted: function() {
+          this.todos = this.todos.reduce( (result, todo) => {
+            if (!todo.completed) {
+              result.push(todo)
+            }
+            return result
+          }, [])
+        }
+      },
+    })
+  </script>
+</body>
+</html>

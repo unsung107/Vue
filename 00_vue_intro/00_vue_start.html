@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- 도움되는 콘솔 경고를 포함한 개발 버전 -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <title>Vue start</title>
+</head>
+<body>
+  
+  <div id="app">
+    {{ message }} - {{ count }}
+    <button v-on:click="plus">plus</button>
+    <button v-on:click="minus">minus</button>
+  </div>
+
+
+  <script>
+    const app = new Vue({
+      el: '#app', // 바인딩, 앞으로 여기의 데이터를 위의 app에 랜더링을 하겠다
+      data: {
+        message: 'Hello, Vue!', // 데이터는 오브젝트 스타트이다! 
+        count: 0,
+      },
+      methods: {
+        plus: function() {
+          this.count++ // function 키워드를 쓰지않으면(Arrow function을 사용하면) this가 Vue를 가르키지못함.
+
+        }, // Arrow function 쓰면안된다!
+        minus: function() {
+          this.count--
+        },
+      }
+      /*
+      this.message (this == self in python) 이 안에서 this로 접근가능!
+      */
+    })
+
+    // new : 새로운 인스턴스를 만들때 사용. 인스턴스를 만든다.
+  </script>
+</body>
+</html>

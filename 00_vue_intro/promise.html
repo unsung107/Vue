@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <!-- Axios -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- 도움되는 콘솔 경고를 포함한 개발 버전 -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+    // Promise : 비동기 작업을 처리할때 사용하는 객체
+    // 성공하면 '.then' 구문으로, 실패하면 '.catch' 구문으로!
+    // const API_URL = 'https://api.thecatapi.com/v1/images/search'
+
+    // axios.get(API_URL) // Promise <resolved>
+    // .then(response => {// Promise 의 value를 .then 메서드로 풀어준다.
+    //   console.log(response)
+    // })
+    // .catch(error =>{
+    //   console.error(error)
+    // })
+
+    // const BAD_API_URL = 'https://api.thecatapi.com/v1/images/sear'
+    // axios.get(BAD_API_URL)
+    // .catch(error =>{
+    //   console.error(error)
+    // })
+
+    const API_URL = 'https://api.thecatapi.com/v1/images/search'
+
+    const getCatImage = async function() {
+
+      const response = await axios.get(API_URL)
+      console.log(response)
+
+      // axios.get(API_URL)
+      //   .then(response => {
+      //     console.log(response)
+      //   })
+    }
+
+    getCatImage()
+
+  </script>
+</body>
+</html>

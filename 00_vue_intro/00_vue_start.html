@@ -12,6 +12,7 @@
   
   <div id="app">
     {{ message }} - {{ count }}
+    <div class="static" v-bind:class="{ active: isActive, 'error': hasError}">dtd</div>
     <button v-on:click="plus">plus</button>
     <button v-on:click="minus">minus</button>
   </div>
@@ -23,6 +24,8 @@
       data: {
         message: 'Hello, Vue!', // 데이터는 오브젝트 스타트이다! 
         count: 0,
+        isActive: true,
+        hasError: false,
       },
       methods: {
         plus: function() {

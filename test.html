@@ -1,26 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- 도움되는 콘솔 경고를 포함한 개발 버전 -->
+  <!-- 도움되는 콘솔 경고를 포함한 개발 버전 -->
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <title>Document</title>
+  <title>Vue start</title>
 </head>
 <body>
+  
   <div id="app">
-    <ul>
-      <li v-for="number in numbers" v-if="number % 2 == 0">{{ number }}</li>
-    </ul>
+    <input v-model="url" type="text">
+    <a :href="url">go!</a>
+    <div class="static" v-bind:class=" { active: isActive, 'error': hasError}"></div>
   </div>
 
+
   <script>
-    var app = new Vue({
-      el: '#app',
+    const app = new Vue({
+      el: '#app', // 바인딩, 앞으로 여기의 데이터를 위의 app에 랜더링을 하겠다
       data: {
-        numbers: [0,1,2,3,4,5,6,7,8,9],
-      }
+        url: '',
+        isActive : true,
+        hasError: false
+      },
     })
   </script>
 </body>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Todo</title>
+  <style>
+    .todo-list {
+      display: inline-block;
+      width: 31%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="todo-list">
+
+
+      <h2>SSAFY</h2>
+      <input v-model="newTodo" type="text" v-on:keydown.enter="addTodo">
+      <button @click="addTodo">+</button>
+      <ul>
+        <li v-for="todo in todos" :key="todo.id" :id="todo.id">
+          <span>{{ todo.content }}</span>
+          <button @click="removeTodo(todo.id)">x</button>
+        </li>
+      </ul>
+    </div>
+
+    <div class="todo-list">
+
+
+      <h2>취업준비</h2>
+      <input v-model="newTodo" type="text" v-on:keydown.enter="addTodo">
+      <button @click="addTodo">+</button>
+      <ul>
+        <li v-for="todo in todos" :key="todo.id" :id="todo.id">
+          <span>{{ todo.content }}</span>
+          <button @click="removeTodo(todo.id)">x</button>
+        </li>
+      </ul>
+    </div>
+
+    <div class="todo-list">
+
+
+      <h2>기타</h2>
+      <input v-model="newTodo" type="text" v-on:keydown.enter="addTodo">
+      <button @click="addTodo">+</button>
+      <ul>
+        <li v-for="todo in todos" :key="todo.id" :id="todo.id">
+          <span>{{ todo.content }}</span>
+          <button @click="removeTodo(todo.id)">x</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        todos: [],
+        newTodo: '',
+      },
+      methods: {
+        addTodo: function () {
+          if (this.newTodo) {
+            this.todos.push({
+              id: new Date().getTime(),
+              completed: false,
+              content: this.newTodo,
+            })
+            this.newTodo = ''
+          }
+        },
+        removeTodo: function (id) {
+          this.todos = this.todos.filter(todo => {
+            return todo.id !== id
+          })
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
